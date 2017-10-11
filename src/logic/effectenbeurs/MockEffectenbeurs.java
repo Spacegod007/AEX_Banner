@@ -3,18 +3,21 @@ package logic.effectenbeurs;
 import logic.Fonds;
 import logic.IFonds;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 /**
  * The stock exchange, where all sorts of interesting things happen
  */
-public class MockEffectenbeurs implements IEffectenbeurs
+public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenbeurs
 {
     private final List<IFonds> fondsen;
     private final Random random;
 
-    public MockEffectenbeurs()
+    public MockEffectenbeurs() throws RemoteException
     {
+        super();
         random = new Random();
 
         fondsen = new ArrayList<>();
