@@ -1,7 +1,5 @@
 package logic;
 
-import java.util.Random;
-
 public class Fonds implements IFonds
 {
     private final String name;
