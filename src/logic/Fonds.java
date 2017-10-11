@@ -22,8 +22,6 @@ public class Fonds implements IFonds
     @Override
     public double getKoers()
     {
-        Random rnd = new Random();
-        koers += (rnd.nextDouble() - 0.5f);
         return koers;
     }
 }
