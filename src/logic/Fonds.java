@@ -26,4 +26,11 @@ public class Fonds implements IFonds
         koers += (rnd.nextDouble() - 0.5f);
         return koers;
     }
+
+    @Override
+    public String toString()
+    {
+        double koers = getKoers();
+        return getName() + ": " + koers;
+    }
 }
