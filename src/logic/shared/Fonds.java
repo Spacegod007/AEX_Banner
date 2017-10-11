@@ -1,4 +1,4 @@
-package logic;
+package logic.shared;
 
 public class Fonds implements IFonds
 {

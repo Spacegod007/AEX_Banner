@@ -1,8 +1,9 @@
 package logic.effectenbeurs;
 
-import logic.IFonds;
+import logic.shared.IFonds;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 /**
@@ -10,5 +11,5 @@ import java.util.List;
  */
 public interface IEffectenbeurs extends Remote
 {
-    List<IFonds> getKoersen();
+    List<IFonds> getKoersen() throws RemoteException;
 }

@@ -1,6 +1,6 @@
 package logic.effectenbeurs;
 
-import logic.IFonds;
+import logic.shared.IFonds;
 
 import java.util.List;
 

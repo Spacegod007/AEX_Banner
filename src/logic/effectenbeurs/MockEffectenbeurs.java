@@ -1,7 +1,7 @@
 package logic.effectenbeurs;
 
-import logic.Fonds;
-import logic.IFonds;
+import logic.shared.Fonds;
+import logic.shared.IFonds;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -17,7 +17,6 @@ public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenb
 
     public MockEffectenbeurs() throws RemoteException
     {
-        super();
         random = new Random();
 
         fondsen = new ArrayList<>();

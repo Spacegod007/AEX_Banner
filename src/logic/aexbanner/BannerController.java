@@ -1,9 +1,8 @@
 package logic.aexbanner;
 
-import logic.IFonds;
+import logic.shared.IFonds;
 import logic.effectenbeurs.IEffectenbeurs;
 import logic.effectenbeurs.MockEffectenbeurs;
-import sample.AEXBanner;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -21,7 +20,8 @@ public class BannerController
 
     public BannerController(AEXBanner banner) throws RemoteException
     {
-        effectenbeurs = new MockEffectenbeurs();
+        ClientRMI client = new ClientRMI();
+        this.effectenbeurs = client.getEffectenbeurs();
 
         refreshTimer = new Timer();
         refreshTimer.scheduleAtFixedRate(new TimerTask()
@@ -29,7 +29,14 @@ public class BannerController
             @Override
             public void run()
             {
-                List<IFonds> fondsen = effectenbeurs.getKoersen();
+                List<IFonds> fondsen = null;
+                try
+                {
+                    fondsen = effectenbeurs.getKoersen();
+                } catch (RemoteException e)
+                {
+                    e.printStackTrace();
+                }
                 banner.setKoersen(convertkoersListToString(fondsen));
             }
         }, 0, 2000);

@@ -1,4 +1,4 @@
-package sample;
+package logic.aexbanner;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.aexbanner.BannerController;
+import logic.effectenbeurs.MockEffectenbeurs;
 
 import java.rmi.RemoteException;
 
@@ -40,6 +41,7 @@ public class AEXBanner extends Application
         {
             setKoersen("Could not connect to server!");
             e.printStackTrace();
+            return;
         }
 
         Font font = new Font("Arial", HEIGHT);
