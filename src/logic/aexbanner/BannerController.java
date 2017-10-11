@@ -2,6 +2,7 @@ package logic.aexbanner;
 
 import logic.IFonds;
 import logic.effectenbeurs.IEffectenbeurs;
+import logic.effectenbeurs.MockEffectenbeurs;
 import sample.AEXBanner;
 
 import java.util.List;
@@ -21,6 +22,9 @@ public class BannerController
     public BannerController(AEXBanner banner)
     {
         this.banner = banner;
+
+        effectenbeurs = new MockEffectenbeurs();
+
         refreshTimer = new Timer();
         refreshTimer.scheduleAtFixedRate(new TimerTask()
         {

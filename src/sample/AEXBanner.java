@@ -2,6 +2,7 @@ package sample;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -59,6 +60,14 @@ public class AEXBanner extends Application
                 if (lag >= NANO_TICKS) {
                     // calculate new location of text
                     // TODO
+                    if (text.getX() + textLength < 0)
+                    {
+                        text.setX(WIDTH);
+                    }
+                    else
+                    {
+                        textPosition -= 1;
+                    }
                     text.relocate(textPosition,0);
                     prevUpdate = now;
                 }
@@ -74,12 +83,15 @@ public class AEXBanner extends Application
         };
 
 
-        //timer.start();
+        animationTimer.start();
     }
 
     public void setKoersen(String koersen) {
-        text.setText(koersen);
-        textLength = text.getLayoutBounds().getWidth();
+        Platform.runLater(() ->
+        {
+            text.setText(koersen);
+            textLength = text.getLayoutBounds().getWidth();
+        });
     }
 
     @Override
