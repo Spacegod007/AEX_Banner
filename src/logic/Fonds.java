@@ -1,7 +1,5 @@
 package logic;
 
-import java.util.Random;
-
 public class Fonds implements IFonds
 {
     private final String name;
@@ -23,5 +21,10 @@ public class Fonds implements IFonds
     public double getKoers()
     {
         return koers;
+    }
+
+    public void setKoers(double koers)
+    {
+        this.koers = koers;
     }
 }
