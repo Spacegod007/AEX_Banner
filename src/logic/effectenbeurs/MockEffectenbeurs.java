@@ -16,16 +16,15 @@ public class MockEffectenbeurs implements IEffectenbeurs
 
     public MockEffectenbeurs()
     {
-        fondsen = new ArrayList<IFonds>(){
-            IFonds fondsA = new Fonds("A", 25);
-            IFonds fondsB = new Fonds("B", 50);
-            IFonds fondsC = new Fonds("C", 75);
-        };
+        fondsen = new ArrayList<>();
+        fondsen.add(new Fonds("A", 25));
+        fondsen.add(new Fonds("B", 50));
+        fondsen.add(new Fonds("C", 75));
     }
 
     @Override
     public List<IFonds> getKoersen()
     {
-        return Collections.unmodifiableList(fondsen);
+         return Collections.unmodifiableList(fondsen);
     }
 }

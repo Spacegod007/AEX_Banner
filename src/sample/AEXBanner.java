@@ -31,7 +31,10 @@ public class AEXBanner extends Application
     private AnimationTimer animationTimer;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage)
+    {
+        
+
 
         controller = new BannerController(this);
 
@@ -60,9 +63,10 @@ public class AEXBanner extends Application
                 if (lag >= NANO_TICKS) {
                     // calculate new location of text
                     // TODO
-                    if (text.getX() + textLength < 0)
+                    if (textPosition + textLength < 0)
                     {
-                        text.setX(WIDTH);
+                        System.out.println("DEBUG: " + textPosition);
+                        textPosition = WIDTH;
                     }
                     else
                     {
@@ -76,8 +80,8 @@ public class AEXBanner extends Application
             public void start() {
                 prevUpdate = System.nanoTime();
                 textPosition = WIDTH;
+                setKoersen("---");
                 text.relocate(textPosition, 0);
-                setKoersen("Nothing to display");
                 super.start();
             }
         };

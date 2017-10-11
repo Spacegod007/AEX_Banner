@@ -31,11 +31,8 @@ public class BannerController
             @Override
             public void run()
             {
-                List<IFonds> koersen = effectenbeurs.getKoersen();
-
-                String koersString = convertkoersListToString(koersen);
-
-                banner.setKoersen(koersString);
+                List<IFonds> fondsen = effectenbeurs.getKoersen();
+                banner.setKoersen(convertkoersListToString(fondsen));
             }
         }, 0, 2000);
     }
@@ -46,7 +43,7 @@ public class BannerController
 
         for (IFonds koers : koersen)
         {
-            koersString += koers.toString();
+            koersString += koers.toString() + " ";
         }
 
         return koersString;

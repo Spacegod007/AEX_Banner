@@ -30,7 +30,7 @@ public class Fonds implements IFonds
     @Override
     public String toString()
     {
-        double koers = getKoers();
+        double koers = Math.floor(getKoers() * 100) / 100;
         return getName() + ": " + koers;
     }
 }
