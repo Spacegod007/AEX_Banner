@@ -33,11 +33,11 @@ public class BannerController
                 try
                 {
                     fondsen = effectenbeurs.getKoersen();
+                    banner.setKoersen(convertkoersListToString(fondsen));
                 } catch (RemoteException e)
                 {
                     e.printStackTrace();
                 }
-                banner.setKoersen(convertkoersListToString(fondsen));
             }
         }, 0, 2000);
     }
