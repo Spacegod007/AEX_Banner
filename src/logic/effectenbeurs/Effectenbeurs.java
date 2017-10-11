@@ -7,9 +7,11 @@ import java.util.List;
 /**
  * Created by Jordi van Roij on 11-Oct-17.
  */
-public class Effectenbeurs implements IEffectenbeurs {
+public class Effectenbeurs implements IEffectenbeurs
+{
     @Override
-    public List<IFonds> getKoersen() {
+    public List<IFonds> getKoersen()
+    {
         return null;
     }
 }
