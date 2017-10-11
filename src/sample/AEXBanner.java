@@ -11,6 +11,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.aexbanner.BannerController;
 
+import java.rmi.RemoteException;
+
 /**
  * AEXBanner is a class that shows a scene where the AEX is viewable.
  */
@@ -31,7 +33,14 @@ public class AEXBanner extends Application
     @Override
     public void start(Stage primaryStage)
     {
-        controller = new BannerController(this);
+        try
+        {
+            controller = new BannerController(this);
+        } catch (RemoteException e)
+        {
+            setKoersen("Could not connect to server!");
+            e.printStackTrace();
+        }
 
         Font font = new Font("Arial", HEIGHT);
         text = new Text();
