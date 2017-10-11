@@ -8,11 +8,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Jordi van Roij on 11-Oct-17.
+ * The stock exchange, where all sorts of interesting things happen
  */
 public class MockEffectenbeurs implements IEffectenbeurs
 {
-    private List<IFonds> fondsen;
+    private final List<IFonds> fondsen;
 
     public MockEffectenbeurs()
     {

@@ -3,8 +3,6 @@ package sample;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -14,14 +12,14 @@ import javafx.stage.Stage;
 import logic.aexbanner.BannerController;
 
 /**
- * Created by Jordi van Roij on 11-Oct-17.
+ * AEXBanner is a class that shows a scene where the AEX is viewable.
  */
 public class AEXBanner extends Application
 {
 
-    public static final int WIDTH = 1000;
-    public static final int HEIGHT = 100;
-    public static final int NANO_TICKS = 20000000;
+    private static final int WIDTH = 1000;
+    private static final int HEIGHT = 100;
+    private static final int NANO_TICKS = 20000000;
     // FRAME_RATE = 1000000000/NANO_TICKS = 50;
 
     private Text text;
@@ -33,9 +31,6 @@ public class AEXBanner extends Application
     @Override
     public void start(Stage primaryStage)
     {
-        
-
-
         controller = new BannerController(this);
 
         Font font = new Font("Arial", HEIGHT);
@@ -52,7 +47,6 @@ public class AEXBanner extends Application
         primaryStage.show();
         primaryStage.toFront();
 
-
         // Start animation: text moves from right to left
         animationTimer = new AnimationTimer() {
             private long prevUpdate;
@@ -62,20 +56,19 @@ public class AEXBanner extends Application
                 long lag = now - prevUpdate;
                 if (lag >= NANO_TICKS) {
                     // calculate new location of text
-                    // TODO
                     if (textPosition + textLength < 0)
                     {
-                        System.out.println("DEBUG: " + textPosition);
                         textPosition = WIDTH;
                     }
                     else
                     {
-                        textPosition -= 1;
+                        textPosition -= 5;
                     }
                     text.relocate(textPosition,0);
                     prevUpdate = now;
                 }
             }
+
             @Override
             public void start() {
                 prevUpdate = System.nanoTime();
@@ -85,7 +78,6 @@ public class AEXBanner extends Application
                 super.start();
             }
         };
-
 
         animationTimer.start();
     }

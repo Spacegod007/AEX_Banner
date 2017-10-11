@@ -5,7 +5,7 @@ import logic.IFonds;
 import java.util.List;
 
 /**
- * Created by Jordi van Roij on 11-Oct-17.
+ * The stock exchange, where all sorts of interesting things happen
  */
 public class Effectenbeurs implements IEffectenbeurs
 {

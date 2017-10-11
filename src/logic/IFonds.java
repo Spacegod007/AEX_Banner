@@ -1,7 +1,7 @@
 package logic;
 
 /**
- * Created by Jordi van Roij on 11-Oct-17.
+ * An interface that shows methods that are required in a fonts class
  */
 public interface IFonds
 {

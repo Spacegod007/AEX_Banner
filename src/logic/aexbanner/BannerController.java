@@ -10,19 +10,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by Jordi van Roij on 11-Oct-17.
+ * BannerController gets fonts at an interval of 2 seconds
  */
 public class BannerController
 {
 
-    private IEffectenbeurs effectenbeurs;
-    private AEXBanner banner;
-    private Timer refreshTimer;
+    private final IEffectenbeurs effectenbeurs;
+    private final Timer refreshTimer;
 
     public BannerController(AEXBanner banner)
     {
-        this.banner = banner;
-
         effectenbeurs = new MockEffectenbeurs();
 
         refreshTimer = new Timer();
@@ -39,14 +36,18 @@ public class BannerController
 
     private String convertkoersListToString(List<IFonds> koersen)
     {
-        String koersString = "";
+        StringBuilder koersString = new StringBuilder();
 
         for (IFonds koers : koersen)
         {
-            koersString += koers.toString() + " ";
+            String koersname = koers.getName();
+            String koersvalue = Double.toString(Math.floor(koers.getKoers() * 100));
+            koersvalue = koersvalue.substring(0, koersvalue.length() - 2);
+            koersvalue = koersvalue.substring(0, koersvalue.length() - 2) + "." + koersvalue.substring(koersvalue.length() - 2);
+            koersString.append(koersname).append(": ").append(koersvalue).append(" ");
         }
 
-        return koersString;
+        return koersString.toString();
     }
 
     public void stop()
