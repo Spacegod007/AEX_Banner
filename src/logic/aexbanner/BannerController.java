@@ -29,12 +29,27 @@ public class BannerController
             {
                 List<IFonds> koersen = effectenbeurs.getKoersen();
 
+                String koersString = convertkoersListToString(koersen);
+
+                banner.setKoersen(koersString);
             }
         }, 0, 2000);
     }
 
+    private String convertkoersListToString(List<IFonds> koersen)
+    {
+        String koersString = "";
+
+        for (IFonds koers : koersen)
+        {
+            koersString += koers.toString();
+        }
+
+        return koersString;
+    }
+
     public void stop()
     {
-
+        refreshTimer.cancel();
     }
 }
