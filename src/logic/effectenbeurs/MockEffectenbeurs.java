@@ -35,7 +35,7 @@ public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenb
                     ((Fonds)fonds).setKoers(fonds.getKoers() + (random.nextDouble()-0.5f));
                 }
             }
-        }, 0, 256);
+        }, 0, 2000);
     }
 
     @Override
