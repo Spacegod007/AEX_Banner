@@ -1,7 +1,7 @@
 package logic.aexbanner;
 
 import logic.effectenbeurs.IEffectenbeurs;
-import view.AEXBanner;
+import sample.AEXBanner;
 
 /**
  * Created by Jordi van Roij on 11-Oct-17.
