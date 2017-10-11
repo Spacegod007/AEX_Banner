@@ -5,6 +5,7 @@ import logic.effectenbeurs.IEffectenbeurs;
 import logic.effectenbeurs.MockEffectenbeurs;
 import sample.AEXBanner;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,7 +19,7 @@ public class BannerController
     private final IEffectenbeurs effectenbeurs;
     private final Timer refreshTimer;
 
-    public BannerController(AEXBanner banner)
+    public BannerController(AEXBanner banner) throws RemoteException
     {
         effectenbeurs = new MockEffectenbeurs();
 
