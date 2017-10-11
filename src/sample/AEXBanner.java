@@ -1,12 +1,11 @@
-package view;
+package sample;
 
 import logic.aexbanner.BannerController;
-import view.Program;
 
 /**
  * Created by Jordi van Roij on 11-Oct-17.
  */
-public class AEXBanner extends Program {
+public class AEXBanner extends Main {
 
     private BannerController bannerController;
 
