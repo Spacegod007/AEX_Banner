@@ -1,9 +1,12 @@
 package logic.effectenbeurs;
 
+import logic.fontyspublisher.RemotePublisher;
 import logic.shared.Fonds;
 import logic.shared.IFonds;
 
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
@@ -14,9 +17,16 @@ public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenb
 {
     private final List<IFonds> fondsen;
     private final Random random;
+    private final RemotePublisher publisher;
 
     public MockEffectenbeurs() throws RemoteException
     {
+        publisher = new RemotePublisher();
+        publisher.registerProperty("fondsen");
+
+        Registry registry = LocateRegistry.createRegistry(1099);
+        registry.rebind("FondsenPublisher", publisher);
+
         random = new Random();
 
         fondsen = new ArrayList<>();
@@ -33,6 +43,15 @@ public class MockEffectenbeurs extends UnicastRemoteObject implements IEffectenb
                 for (IFonds fonds : fondsen)
                 {
                     ((Fonds)fonds).setKoers(fonds.getKoers() + (random.nextDouble()-0.5f));
+                }
+
+                try
+                {
+                    publisher.inform("fondsen",null,fondsen);
+                }
+                catch (RemoteException e)
+                {
+                    e.printStackTrace();
                 }
             }
         }, 0, 2000);

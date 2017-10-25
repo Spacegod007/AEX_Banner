@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import logic.aexbanner.BannerController;
 import logic.effectenbeurs.MockEffectenbeurs;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
@@ -40,6 +41,12 @@ public class AEXBanner extends Application
         } catch (RemoteException e)
         {
             setKoersen("Could not connect to server!");
+            e.printStackTrace();
+            return;
+        }
+        catch (NotBoundException e)
+        {
+            setKoersen("Error getting values form server!");
             e.printStackTrace();
             return;
         }
@@ -104,7 +111,15 @@ public class AEXBanner extends Application
     @Override
     public void stop() {
         animationTimer.stop();
-        controller.stop();
+
+        try
+        {
+            controller.stop();
+        }
+        catch (RemoteException e)
+        {
+            e.printStackTrace();
+        }
     }
 
 }

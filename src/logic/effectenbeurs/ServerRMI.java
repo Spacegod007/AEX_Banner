@@ -46,6 +46,7 @@ public class ServerRMI
     {
         System.out.println("Server starting");
 
-        ServerRMI server = new ServerRMI();
+//        ServerRMI server = new ServerRMI();
+        IEffectenbeurs beurs = new MockEffectenbeurs();
     }
 }

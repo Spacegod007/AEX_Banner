@@ -1,10 +1,19 @@
 package logic.aexbanner;
 
+import logic.fontyspublisher.ILocalPropertyListener;
+import logic.fontyspublisher.IPropertyListener;
+import logic.fontyspublisher.IRemotePropertyListener;
+import logic.fontyspublisher.IRemotePublisherForListener;
 import logic.shared.IFonds;
 import logic.effectenbeurs.IEffectenbeurs;
 import logic.effectenbeurs.MockEffectenbeurs;
 
+import java.beans.PropertyChangeEvent;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,34 +21,18 @@ import java.util.TimerTask;
 /**
  * BannerController gets fonts at an interval of 2 seconds
  */
-public class BannerController
+public class BannerController extends UnicastRemoteObject implements IRemotePropertyListener
 {
+    private IRemotePublisherForListener publisher;
+    private AEXBanner banner;
 
-    private final IEffectenbeurs effectenbeurs;
-    private final Timer refreshTimer;
-
-    public BannerController(AEXBanner banner) throws RemoteException
+    public BannerController(AEXBanner banner) throws RemoteException, NotBoundException
     {
-        ClientRMI client = new ClientRMI();
-        this.effectenbeurs = client.getEffectenbeurs();
+        this.banner = banner;
 
-        refreshTimer = new Timer();
-        refreshTimer.scheduleAtFixedRate(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                List<IFonds> fondsen = null;
-                try
-                {
-                    fondsen = effectenbeurs.getKoersen();
-                    banner.setKoersen(convertkoersListToString(fondsen));
-                } catch (RemoteException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }, 0, 2000);
+        Registry registry = LocateRegistry.getRegistry("127.0.0.1", 1099);
+        publisher = (IRemotePublisherForListener) registry.lookup("FondsenPublisher");
+        publisher.subscribeRemoteListener(this, "fondsen");
     }
 
     private String convertkoersListToString(List<IFonds> koersen)
@@ -58,8 +51,15 @@ public class BannerController
         return koersString.toString();
     }
 
-    public void stop()
+    public void stop() throws RemoteException
     {
-        refreshTimer.cancel();
+            publisher.unsubscribeRemoteListener(this, "fondsen");
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) throws RemoteException
+    {
+        List fondsen = (List<IFonds>) evt.getNewValue();
+        banner.setKoersen(convertkoersListToString(fondsen));
     }
 }
