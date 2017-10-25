@@ -28,7 +28,7 @@ public class ClientRMI
             registry = null;
         }
 
-        // Bind student administration using registry
+        // Bind Stock exchange using registry
         if (registry != null) {
             try {
                 effectenbeurs = (IEffectenbeurs) registry.lookup(bindingName);

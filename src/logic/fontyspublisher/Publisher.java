@@ -161,7 +161,7 @@ public class Publisher {
             }
         } else {
             // Unsubscribe property listener from all propertys
-            /**
+            /*
              * REMARK BY NICO KUIJPERS.
              * Set<String> keyset = propertyListeners.keySet();
              * may cause a java.util.ConcurrentModificationException
