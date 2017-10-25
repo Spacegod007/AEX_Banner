@@ -52,11 +52,6 @@ public class Publisher {
     private final ExecutorService pool;
 
     /**
-     * Number of threads in thread pool.
-     */
-    private final int nrThreads = 10;
-    
-    /**
      * Default no-arg constructor for Publisher.
      */
     public Publisher() {
@@ -86,6 +81,10 @@ public class Publisher {
         setPropertiesString();
 
         // Initialize thread pool
+        /*
+      Number of threads in thread pool.
+     */
+        int nrThreads = 10;
         pool = Executors.newFixedThreadPool(nrThreads);
     }
 
@@ -332,10 +331,10 @@ public class Publisher {
     private class InformListenerRunnable implements Runnable {
 
         // Property listener to be informed
-        IPropertyListener listener;
+        final IPropertyListener listener;
 
         // Property change event to be sent to listener
-        PropertyChangeEvent event;
+        final PropertyChangeEvent event;
 
         public InformListenerRunnable(IPropertyListener listener, PropertyChangeEvent event) {
             this.listener = listener;

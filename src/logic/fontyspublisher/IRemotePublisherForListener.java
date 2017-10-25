@@ -7,7 +7,6 @@ package logic.fontyspublisher;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
 
 /**
  * IRemotePublisherForListener. Interface to remote publisher in order to subscribe 
@@ -29,7 +28,7 @@ public interface IRemotePublisherForListener extends Remote {
      * @param property null-String allowed
      * @throws java.rmi.RemoteException
      */
-    public void subscribeRemoteListener(IRemotePropertyListener listener, String property)
+    void subscribeRemoteListener(IRemotePropertyListener listener, String property)
             throws RemoteException;
 
     /**

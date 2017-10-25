@@ -18,7 +18,7 @@ public class RemotePublisher extends UnicastRemoteObject
     implements IRemotePublisherForListener, IRemotePublisherForDomain {
 
     // Local publisher
-    Publisher publisher;
+    final Publisher publisher;
     
     /**
      * Default no-arg constructor for RemotePublisher.
