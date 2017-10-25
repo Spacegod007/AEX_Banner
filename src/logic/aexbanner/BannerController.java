@@ -1,12 +1,8 @@
 package logic.aexbanner;
 
-import logic.fontyspublisher.ILocalPropertyListener;
-import logic.fontyspublisher.IPropertyListener;
 import logic.fontyspublisher.IRemotePropertyListener;
 import logic.fontyspublisher.IRemotePublisherForListener;
 import logic.shared.IFonds;
-import logic.effectenbeurs.IEffectenbeurs;
-import logic.effectenbeurs.MockEffectenbeurs;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.NotBoundException;
@@ -15,8 +11,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * BannerController gets fonts at an interval of 2 seconds

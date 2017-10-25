@@ -10,7 +10,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logic.aexbanner.BannerController;
-import logic.effectenbeurs.MockEffectenbeurs;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

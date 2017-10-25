@@ -35,6 +35,7 @@ public class ServerRMI
 
         // Bind student administration using registry
         try {
+            assert registry != null;
             registry.rebind(bindingName, effectenbeurs);
         } catch (RemoteException ex) {
             System.out.println("Server: Cannot bind effectenbeurs");
